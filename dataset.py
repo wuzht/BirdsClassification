@@ -57,6 +57,3 @@ class CUB200Dataset(torch.utils.data.Dataset):
 if __name__ == "__main__":
     data = CUB200Dataset(train=False)
     print(len(data))
-    # classes_dict = get_classes_dict()
-    # classes_dict = json.dumps(classes_dict, ensure_ascii=False, indent=1)
-    # print(classes_dict)

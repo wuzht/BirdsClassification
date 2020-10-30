@@ -8,7 +8,7 @@ import torch.nn as nn
 
 from dataset import CUB200Dataset
 from tools import choose_gpu, Logger, AverageMeter, setup_seed, mkdir, summary
-from tools import to_str_args, to_str_lr_scheduler, ImProgressBar
+from tools import to_str_args, ImProgressBar
 
 parser = argparse.ArgumentParser(description='CUB200 Classification  ')
 parser.add_argument("--root", type=str, default='./CUB-200', help='data root dir')
@@ -22,7 +22,7 @@ def get_args():
     args.memory_gpu = memory_gpu
     args.optim_type    = 'Adam'         # optimizer type, choices=['SGD', 'Adam']
     args.num_classes   = 200
-    args.lr            = 1e-2
+    args.lr            = 1e-3
     args.batch_size    = 256
     args.momentum      = 0.9
     args.decay         = 1e-3
@@ -62,7 +62,7 @@ class Trainer():
             shuffle=False
         )
 
-        self.model = torchvision.models.resnet18(pretrained=False)
+        self.model = torchvision.models.resnet18(pretrained=True)
         self.model.fc = nn.Linear(in_features=self.model.fc.in_features, out_features=self.args.num_classes)
         self.model.cuda()
 
@@ -146,7 +146,3 @@ class Trainer():
 if __name__ == "__main__":
     trainer = Trainer(get_args())
     trainer.fit()
-    # train_loss, train_acc = trainer.eval(trainer.train_loader)
-    # test_loss, test_acc = trainer.eval(trainer.test_loader)
-    # trainer.log.info('Train loss: {:.3f}, Test loss: {:.3f}, Train acc: {:.3f}%, Test acc: {:.3f}%'.format(
-    #     train_loss, test_loss, train_acc * 100, test_acc * 100))

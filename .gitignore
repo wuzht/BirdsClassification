@@ -1,4 +1,5 @@
-CUB-200/
+CUB-200/*
+!.gitkeep
 exp/
 
 # Byte-compiled / optimized / DLL files
