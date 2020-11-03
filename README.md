@@ -15,9 +15,7 @@ Extract the archives:
 
 ```sh
 cd CUB-200
-tar -xzf images.tgz
-tar -xzf lists.tgz
-find . -name ".*" | xargs rm -rf
+bash extract.sh
 ```
 
 ## Environment

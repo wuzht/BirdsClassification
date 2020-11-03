@@ -1,5 +1,6 @@
 CUB-200/*
 !.gitkeep
+!extract.sh
 exp/
 
 # Byte-compiled / optimized / DLL files
